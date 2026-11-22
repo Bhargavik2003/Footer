@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact and footer</title>
+<!--
+  CONTACT + FOOTER. Paste into a Framer Embed (HTML).
+  Contact links: email, WhatsApp (opens a chat with a ready message), LinkedIn. Each has a copy button.
+  Fonts (Syne, Inter) load from Google Fonts.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --linen:#F5F1E8; --aubergine:#2F0A28; --rose:#815355; --lime:#E4FF5C; --indigo:#642CA9;
+    --brown:#5A4656; --surface:#EAE3D6;
+    --ease:cubic-bezier(0.22,1,0.36,1);
+    --head:"Syne","Helvetica Neue",Arial,sans-serif;
+    --body:"Inter","Helvetica Neue",Arial,sans-serif;
+    /* same layout system as the hero: phone base, tablet 600+, desktop 1200+ */
+    --gutter:20px; --section-y:64px; --max:1200px; --h2:28px; --gap:24px; --pad:20px;
+  }
+  @media (min-width:600px){:root{--gutter:40px;--section-y:96px;--h2:36px;--gap:32px;--pad:24px}}
+  @media (min-width:1200px){:root{--gutter:64px;--section-y:128px;--h2:44px;--gap:40px;--pad:28px}}
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0}
+  body{font-family:var(--body);-webkit-text-size-adjust:100%}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 max(var(--gutter),env(safe-area-inset-right)) 0 max(var(--gutter),env(safe-area-inset-left))}
+  .sec{padding-top:var(--section-y);padding-bottom:var(--section-y)}
+  .label{margin:0 0 12px;font:500 13px/1.3 var(--body);letter-spacing:.08em;text-transform:uppercase}
+  h2{margin:0 0 16px;font:700 var(--h2)/1.1 var(--head);letter-spacing:-.02em;text-wrap:balance}
+  .intro{margin:0;max-width:56ch;font:400 16px/1.6 var(--body);text-wrap:pretty}
+  .head{margin-bottom:40px}
+  @media (min-width:600px){.head{margin-bottom:48px}.label{margin-bottom:12px}}
+  @media (min-width:1200px){.head{margin-bottom:64px}.label{margin-bottom:16px}}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--indigo);outline-offset:3px}
+  .on-dark a:focus-visible,.on-dark button:focus-visible{outline-color:var(--lime)}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+  body{background:var(--aubergine)}
+
+  body{background:var(--aubergine);color:var(--linen)}
+  .contact{background:var(--rose)}
+  .contact .label{color:var(--lime)}
+  .contact h2{color:var(--linen);margin-bottom:16px}
+  .contact .intro{color:rgba(245,241,232,.92)}
+  .cols{display:grid;gap:32px}
+  @media (min-width:860px){.cols{grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:64px;align-items:center}}
+  .rows{display:grid;gap:12px}
+  .row{display:flex;align-items:stretch;background:var(--aubergine);border:1.5px solid var(--aubergine);color:var(--linen);transition:background 200ms ease,border-color 200ms ease,color 200ms ease}
+  .row:hover{border-color:var(--lime)}
+  .main{flex:1;min-width:0;display:flex;align-items:center;gap:14px;padding:12px 16px;min-height:72px;color:inherit;text-decoration:none}
+  .ico{flex:none;width:44px;height:44px;display:grid;place-items:center;border:1px solid rgba(245,241,232,.4);transition:background 200ms ease,border-color 200ms ease,color 200ms ease}
+  .ico svg{width:22px;height:22px;display:block}
+  .txt{min-width:0;display:block}
+  .k{display:block;margin:0 0 4px;font:500 13px/1.2 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--lime)}
+  .v{display:block;font:500 15px/1.3 var(--body);overflow-wrap:anywhere}
+  .go{flex:none;margin-left:auto;width:20px;height:20px;transition:transform 300ms var(--ease)}
+  .go svg{width:20px;height:20px;display:block}
+  .main:hover .go{transform:translateX(4px)}
+  .row--primary{background:var(--lime);border-color:var(--lime);color:var(--aubergine)}
+  .row--primary .k{color:var(--aubergine)}
+  .row--primary .ico{border-color:rgba(47,10,40,.4)}
+  .row--primary:hover{background:var(--linen);border-color:var(--linen)}
+  .copy{flex:none;width:56px;border:0;border-left:1px solid rgba(245,241,232,.2);background:transparent;color:inherit;cursor:pointer;display:grid;place-items:center;font:500 12px/1 var(--body);transition:background 200ms ease,color 200ms ease}
+  .copy svg{width:20px;height:20px;display:block}
+  .row--primary .copy{border-left-color:rgba(47,10,40,.2)}
+  .copy:hover{background:var(--linen);color:var(--aubergine)}
+  .copy .done{display:none}
+  .copy.is-done .done{display:block}.copy.is-done svg{display:none}
+  .row:not(.row--primary) .main:hover .ico{background:var(--lime);border-color:var(--lime);color:var(--aubergine)}
+  .hint{margin:16px 0 0;font:400 14px/1.5 var(--body);color:rgba(245,241,232,.85)}
+  .bar{background:var(--aubergine);padding-top:32px;padding-bottom:max(32px,env(safe-area-inset-bottom))}
+  @media (min-width:600px){.bar{padding-top:40px;padding-bottom:40px}}
+  @media (min-width:1200px){.bar{padding-top:48px;padding-bottom:48px}}
+  .barin{display:flex;flex-wrap:wrap;gap:16px 24px;justify-content:space-between;align-items:center}
+  .barin p{margin:0;font:400 13px/1.5 var(--body);color:rgba(245,241,232,.7)}
+  .barin a{display:inline-flex;align-items:center;min-height:44px;font:500 13px/1.5 var(--body);color:var(--linen);text-decoration:underline;text-underline-offset:4px;transition:color 200ms ease}
+  .barin a:hover{color:var(--lime)}
+  @media (max-width:440px){.go{display:none}.v{font-size:14px}.main{gap:12px;padding:12px}}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+</style>
+</head>
+<body class="">
+<section class="contact sec on-dark" aria-labelledby="ct-h">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <p class="label">Contact</p>
+        <h2 id="ct-h">If it needs to make sense, let's talk.</h2>
+        <p class="intro">Looking for interaction, UI/UX and product design opportunities. Email is fastest, and WhatsApp works too.</p>
+      </div>
+      <div>
+        <div class="rows">
+          <div class="row row--primary">
+            <a class="main" id="lnk-mail" href="mailto:bhargavik.designer@gmail.com?subject=Hello%20Bhargavi" target="_top" aria-label="Email Bhargavi at bhargavik.designer@gmail.com">
+              <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 6.5 12 13l8.5-6.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span><span class="txt"><span class="k">Email</span><span class="v">bhargavik.designer@gmail.com</span></span><span class="go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            </a>
+            <button class="copy" type="button" data-copy="bhargavik.designer@gmail.com" aria-label="Copy email address"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15.5 8.5v-4h-11v11h4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span class="done">Copied</span></button>
+          </div>
+          <div class="row">
+            <a class="main" id="lnk-wa" href="https://wa.me/919607133955?text=Hi%20Bhargavi%2C%20I%20saw%20your%20portfolio." target="_blank" rel="noopener" aria-label="Message Bhargavi on WhatsApp, +91 96071 33955">
+              <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.2 7.8c.3 2.6 2.6 5.3 6.2 6.4l1.3-1.4-2.1-1-1 .8c-1-.4-2-1.4-2.4-2.4l.8-1-1-2.1z" fill="currentColor"/></svg></span><span class="txt"><span class="k">WhatsApp</span><span class="v">+91 96071 33955</span></span><span class="go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            </a>
+            <button class="copy" type="button" data-copy="+919607133955" aria-label="Copy phone number"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15.5 8.5v-4h-11v11h4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span class="done">Copied</span></button>
+          </div>
+          <div class="row">
+            <a class="main" id="lnk-in" href="https://www.linkedin.com/in/bhargavi-k-506513240/" target="_blank" rel="noopener" aria-label="Connect with Bhargavi on LinkedIn">
+              <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="9" width="3.6" height="11.5" fill="currentColor"/><circle cx="5.3" cy="5.2" r="2.1" fill="currentColor"/><path d="M10 9h3.5v1.6c.6-1.1 1.9-1.9 3.6-1.9 3.2 0 3.9 2.1 3.9 4.9v6.9h-3.6v-6.1c0-1.5 0-2.8-1.8-2.8s-2 1.3-2 2.7v6.2H10z" fill="currentColor"/></svg></span><span class="txt"><span class="k">LinkedIn</span><span class="v">Connect with Bhargavi</span></span><span class="go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            </a>
+            <button class="copy" type="button" data-copy="https://www.linkedin.com/in/bhargavi-k-506513240/" aria-label="Copy LinkedIn link"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15.5 8.5v-4h-11v11h4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span class="done">Copied</span></button>
+          </div>
+        </div>
+        <p class="hint" id="hint" aria-live="polite">Tap an icon to open it. Use the copy button if you prefer to paste.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="bar on-dark">
+  <div class="wrap barin">
+    <p>&copy; 2026 Bhargavi &middot; Interaction designer</p>
+    <a id="lnk-resume" href="https://drive.google.com/drive/folders/1Papi-EFj-2HwBck3MfVnz-Cl8gODI1Jp" target="_blank" rel="noopener">Download resume</a>
+  </div>
+</footer>
+<script>
+(function () {
+  var hint = document.getElementById('hint'), orig = hint.textContent, timer;
+  function done(btn) {
+    btn.classList.add('is-done'); hint.textContent = 'Copied to your clipboard.';
+    clearTimeout(timer);
+    timer = setTimeout(function () { btn.classList.remove('is-done'); hint.textContent = orig; }, 1800);
+  }
+  function fallback(text) {
+    var t = document.createElement('textarea'); t.value = text; t.setAttribute('readonly', '');
+    t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select();
+    var ok = false; try { ok = document.execCommand('copy'); } catch (e) {} document.body.removeChild(t); return ok;
+  }
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.getAttribute('data-copy');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { done(btn); }, function () { if (fallback(text)) done(btn); });
+      } else if (fallback(text)) done(btn);
+    });
+  });
+})();
+</script>
+</body>
+</html>
